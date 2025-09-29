@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+      color: #fff;
+      overflow-x: hidden;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+
+    body.light-mode {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      color: #1a1a2e;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(26, 26, 46, 0.95);
+      backdrop-filter: blur(20px);
+      padding: 20px 30px;
+      margin: 30px 30px 0 30px;
+      border-radius: 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      transition: all 0.5s ease;
+    }
+
+    body.light-mode header {
+      background: rgba(81, 70, 152, 0.95);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    body.light-mode .logo {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .header-nav a {
+      color: #373152;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    body.light-mode .header-nav a {
+      color: #1a1a2e;
+      background: rgba(0, 0, 0, 0.05);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .header-nav a:hover,
+    .header-nav a.active {
+      background: rgba(102, 126, 234, 0.2);
+      border-color: rgba(102, 126, 234, 0.4);
+      transform: translateY(-2px);
+    }
+
+    body.light-mode .header-nav a:hover,
+    body.light-mode .header-nav a.active {
+      background: rgba(79, 172, 254, 0.2);
+      border-color: rgba(79, 172, 254, 0.4);
+    }
+
+    .header-theme-toggle {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+    }
+
+    .header-theme-toggle:hover {
+      transform: scale(1.1) rotate(180deg);
+      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
+    }
+
+    body.light-mode .header-theme-toggle {
+      background: rgba(0, 0, 0, 0.1);
+      border-color: rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 968px) {
+      header {
+        margin: 15px;
+        border-radius: 20px;
+        padding: 15px 20px;
+      }
+
+      .header-content {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .header-nav {
+        gap: 15px;
+        justify-content: center;
+      }
+
+      .header-nav a {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .header-nav {
+        gap: 10px;
+      }
+
+      .header-nav a {
+        font-size: 0.85rem;
+        padding: 7px 12px;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Theme Toggle Button */
+    .theme-toggle {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1) rotate(180deg);
+      box-shadow: 0 8px 30px rgba(102, 126, 234, 0.5);
+    }
+
+    body.light-mode .theme-toggle {
+      background: rgba(0, 0, 0, 0.1);
+      border-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .theme-icon {
+      font-size: 1.5rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.5s ease;
+      margin: 30px;
+      border-radius: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    body.light-mode .hero {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      box-shadow: 0 20px 60px rgba(79, 172, 254, 0.3);
+    }
+
+    /* Navigation */
+    .nav-menu {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 40px;
+      padding: 20px;
+      position: relative;
+      z-index: 2;
+      flex-wrap: wrap;
+    }
+
+    .nav-menu a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 12px 25px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-menu a:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+    }
+
+    .nav-menu a.active {
+      background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 5px 20px rgba(255, 255, 255, 0.4);
+    }
+
+    body.light-mode .nav-menu a {
+      background: rgba(255, 255, 255, 0.4);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    body.light-mode .nav-menu a:hover {
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        gap: 15px;
+        padding: 15px;
+      }
+
+      .nav-menu a {
+        font-size: 0.95rem;
+        padding: 10px 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-menu {
+        gap: 10px;
+      }
+
+      .nav-menu a {
+        font-size: 0.85rem;
+        padding: 8px 15px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        margin: 15px;
+        border-radius: 20px;
+      }
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: moveGrid 20s linear infinite;
+    }
+
+    @keyframes moveGrid {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+      text-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      opacity: 0.95;
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    .project-row {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      margin-bottom: 120px;
+      position: relative;
+    }
+
+    .project-row:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .project-images {
+      flex: 1;
+      position: relative;
+      min-height: 450px;
+    }
+
+    .main-image {
+      width: 100%;
+      height: 450px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      position: relative;
+    }
+
+    .main-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .main-image:hover img {
+      transform: scale(1.1);
+    }
+
+    .overlay-image {
+      position: absolute;
+      width: 280px;
+      height: 200px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+      border: 5px solid #1a1a2e;
+      z-index: 2;
+    }
+
+    .overlay-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .overlay-image:hover img {
+      transform: scale(1.15);
+    }
+
+    .project-row:nth-child(odd) .overlay-image {
+      top: -30px;
+      right: -50px;
+    }
+
+    .project-row:nth-child(even) .overlay-image {
+      top: -30px;
+      left: -50px;
+    }
+
+    .corner-badge {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 10px 25px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+      z-index: 3;
+    }
+
+    .project-row:nth-child(even) .corner-badge {
+      left: 20px;
+      right: auto;
+    }
+
+    .project-content {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .project-tag {
+      display: inline-block;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .project-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .project-content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #b8b8d1;
+      margin-bottom: 15px;
+      transition: color 0.5s ease;
+    }
+
+    body.light-mode .project-content p {
+      color: #4a5568;
+    }
+
+    body.light-mode .main-image,
+    body.light-mode .overlay-image {
+      border-color: #ffffff;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .tech-badge {
+      background: rgba(102, 126, 234, 0.2);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(102, 126, 234, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .tech-badge:hover {
+      background: rgba(102, 126, 234, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .cta-button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 15px 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 30px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+    }
+
+    @media (max-width: 968px) {
+      .project-row,
+      .project-row:nth-child(even) {
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 80px;
+      }
+
+      .project-images {
+        min-height: 350px;
+      }
+
+      .main-image {
+        height: 350px;
+      }
+
+      .overlay-image {
+        width: 220px;
+        height: 160px;
+        top: auto;
+        bottom: -30px;
+        right: 20px;
+        left: auto;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .project-content h2 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .overlay-image {
+        width: 180px;
+        height: 130px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .theme-toggle {
+        width: 50px;
+        height: 50px;
+        top: 20px;
+        right: 20px;
+      }
+
+      .theme-icon {
+        font-size: 1.2rem;
+      }
+    }
+
+    /* Footer Styles */
+    footer {
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      padding: 60px 20px 30px;
+      margin: 80px 30px 30px 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.5s ease;
+      border-radius: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    body.light-mode footer {
+      background: rgba(255, 255, 255, 0.6);
+      border-top-color: rgba(0, 0, 0, 0.1);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      footer {
+        margin: 60px 15px 15px 15px;
+        border-radius: 20px;
+      }
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section h3 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    body.light-mode .footer-section h3 {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-section p {
+      line-height: 1.8;
+      opacity: 0.8;
+      margin-bottom: 15px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: inherit;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      transform: translateX(5px);
+      color: #667eea;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(102, 126, 234, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(102, 126, 234, 0.3);
+    }
+
+    .social-icon:hover {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    body.light-mode .social-icon {
+      background: rgba(79, 172, 254, 0.2);
+      border-color: rgba(79, 172, 254, 0.3);
+    }
+
+    body.light-mode .social-icon:hover {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      opacity: 0.7;
+    }
+
+    body.light-mode .footer-bottom {
+      border-top-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .footer-bottom p {
+      margin: 5px 0;
+    }
+
+    @media (max-width: 768px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      footer {
+        margin: 60px 15px 15px 15px;
+        border-radius: 20px;
+        padding: 40px 20px 20px;
+      }
+
+      .hero {
+        margin: 15px;
+        border-radius: 20px;
+        padding: 60px 20px 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Navigation -->
+  <header data-aos="fade-down">
+    <div class="header-content">
+      <div class="logo">Portfolio</div>
+      <nav class="header-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <button class="header-theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+          <span class="theme-icon">🌙</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Theme Toggle Button (Hidden - Now in header) -->
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+    <span class="theme-icon">🌙</span>
+  </button>
+
+  <div class="hero" data-aos="fade-down">
+    <h1> Projects</h1>
+    <p>Innovative solutions crafted with passion and precision</p>
+  </div>
+
+  <div class="container">
+    <!-- Project 1: Saudi Istidama Contracting -->
+    <div class="project-row" data-aos="fade-right" data-aos-duration="1000">
+      <div class="project-images">
+        <div class="main-image">
+          <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80" alt="Saudi Istidama Construction">
+          <div class="corner-badge">Live Project</div>
+        </div>
+        <div class="overlay-image" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=400&q=80" alt="Construction Detail">
+        </div>
+      </div>
+      <div class="project-content" data-aos="fade-left" data-aos-delay="300">
+        <span class="project-tag">Live & Active</span>
+        <h2>Saudi Istidama Contracting</h2>
+        <p>A premium, bilingual corporate website for one of Saudi Arabia's leading construction companies. Features full Arabic and English support with RTL layout optimization.</p>
+        <p>Built with modern web technologies, featuring stunning project galleries, real-time updates, and a comprehensive service showcase. Fully responsive across all devices with exceptional performance.</p>
+        <div class="tech-stack">
+          <span class="tech-badge">WordPress</span>
+          <span class="tech-badge">Arabic/English</span>
+          <span class="tech-badge">AOS Animations</span>
+          <span class="tech-badge">SEO Optimized</span>
+          <span class="tech-badge">Responsive Design</span>
+        </div>
+        <a href="#" class="cta-button">View Live Site</a>
+      </div>
+    </div>
+
+    <!-- Project 2: Smart Dustbin -->
+    <div class="project-row" data-aos="fade-left" data-aos-duration="1000">
+      <div class="project-images">
+        <div class="main-image">
+          <img src="https://images.unsplash.com/photo-1550985616-10810253b84d?auto=format&fit=crop&w=800&q=80" alt="Smart Dustbin">
+          <div class="corner-badge">Hardware IoT</div>
+        </div>
+        <div class="overlay-image" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80" alt="IoT Circuit">
+        </div>
+      </div>
+      <div class="project-content" data-aos="fade-right" data-aos-delay="300">
+        <span class="project-tag">IoT Hardware</span>
+        <h2>Smart Dustbin System</h2>
+        <p>An intelligent waste management solution using Arduino and ultrasonic sensors. Automatically opens when detecting motion and monitors fill levels in real-time.</p>
+        <p>Features include automatic lid control, mobile app notifications when the bin is full, and data logging for waste management analytics. Promotes hygiene and efficient waste collection.</p>
+        <div class="tech-stack">
+          <span class="tech-badge">Arduino</span>
+          <span class="tech-badge">Ultrasonic Sensor</span>
+          <span class="tech-badge">Servo Motor</span>
+          <span class="tech-badge">IoT Integration</span>
+          <span class="tech-badge">Mobile Alerts</span>
+        </div>
+        <a href="#" class="cta-button">View Details</a>
+      </div>
+    </div>
+
+    <!-- Project 3: VibeZone Social Platform -->
+    <div class="project-row" data-aos="fade-right" data-aos-duration="1000">
+      <div class="project-images">
+        <div class="main-image">
+          <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80" alt="VibeZone Platform">
+          <div class="corner-badge">Full Stack</div>
+        </div>
+        <div class="overlay-image" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=400&q=80" alt="Social Features">
+        </div>
+      </div>
+      <div class="project-content" data-aos="fade-left" data-aos-delay="300">
+        <span class="project-tag">Social Platform</span>
+        <h2>VibeZone Social Platform</h2>
+        <p>A unique social platform focused on emotional connections and mood sharing. Users can track their emotions, connect with others feeling similar vibes, and build meaningful relationships.</p>
+        <p>Features real-time notifications, interactive UI with smooth animations, user profiles, chat functionality, and personalized recommendations based on emotional patterns.</p>
+        <div class="tech-stack">
+          <span class="tech-badge">React</span>
+          <span class="tech-badge">Node.js</span>
+          <span class="tech-badge">MongoDB</span>
+          <span class="tech-badge">WebSocket</span>
+          <span class="tech-badge">Real-time</span>
+        </div>
+        <a href="#" class="cta-button">Explore Platform</a>
+      </div>
+    </div>
+
+    <!-- Project 4: BookVerse AI -->
+    <div class="project-row" data-aos="fade-left" data-aos-duration="1000">
+      <div class="project-images">
+        <div class="main-image">
+          <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=80" alt="BookVerse AI">
+          <div class="corner-badge">AI Powered</div>
+        </div>
+        <div class="overlay-image" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80" alt="Book Library">
+        </div>
+      </div>
+      <div class="project-content" data-aos="fade-right" data-aos-delay="300">
+        <span class="project-tag">Machine Learning</span>
+        <h2>BookVerse – AI Book Recommendation</h2>
+        <p>An intelligent book recommendation system powered by machine learning clustering algorithms. Discovers your reading preferences and suggests books you'll love.</p>
+        <p>Features advanced search and filtering, personalized recommendations, interactive book exploration, and a premium user interface with smooth navigation.</p>
+        <div class="tech-stack">
+          <span class="tech-badge">Python</span>
+          <span class="tech-badge">ML Clustering</span>
+          <span class="tech-badge">Flask API</span>
+          <span class="tech-badge">Interactive UI</span>
+          <span class="tech-badge">Personalization</span>
+        </div>
+        <a href="#" class="cta-button">Try It Out</a>
+      </div>
+    </div>
+
+    <!-- Project 5: Fraud Detection API
+    <div class="project-row" data-aos="fade-right" data-aos-duration="1000">
+      <div class="project-images">
+        <div class="main-image">
+          <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80" alt="Fraud Detection">
+          <div class="corner-badge">Enterprise</div>
+        </div>
+        <div class="overlay-image" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80" alt="Data Analytics">
+        </div>
+      </div>
+      <div class="project-content" data-aos="fade-left" data-aos-delay="300">
+        <span class="project-tag">FinTech Security</span>
+        <h2>Fraud Transaction Detection API</h2>
+        <p>Advanced machine learning system for detecting fraudulent transactions in real-time. Protects businesses from financial fraud with high accuracy and low false positives.</p>
+        <p>Deployed as a REST API with visual flagging system and interactive Streamlit UI for testing. Includes comprehensive analytics and reporting features.</p>
+        <div class="tech-stack">
+          <span class="tech-badge">Python</span>
+          <span class="tech-badge">ML Detection</span>
+          <span class="tech-badge">REST API</span>
+          <span class="tech-badge">Streamlit</span>
+          <span class="tech-badge">Real-time Analysis</span>
+        </div>
+        <a href="#" class="cta-button">View Demo</a>
+      </div>
+    </div>
+-->
+    <!-- Project 5: Admin Panel -->
+    <div class="project-row" data-aos="fade-left" data-aos-duration="1000">
+      <div class="project-images">
+        <div class="main-image">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Admin Dashboard">
+          <div class="corner-badge">Full Stack</div>
+        </div>
+        <div class="overlay-image" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80" alt="Dashboard Analytics">
+        </div>
+      </div>
+      <div class="project-content" data-aos="fade-right" data-aos-delay="300">
+        <span class="project-tag">Backend System</span>
+        <h2>Admin Panel (Flask)</h2>
+        <p>Comprehensive dashboard for file uploads, user management, and system administration. Features dark mode, multilingual support (Arabic/English), and real-time notifications.</p>
+        <p>Built with Flask backend, integrated with MongoDB and MySQL databases. Includes role-based access control, activity logging, and advanced analytics.</p>
+        <div class="tech-stack">
+          <span class="tech-badge">Flask</span>
+          <span class="tech-badge">MongoDB</span>
+          <span class="tech-badge">MySQL</span>
+          <span class="tech-badge">Dark Mode</span>
+          <span class="tech-badge">Multilingual</span>
+        </div>
+        <a href="#" class="cta-button">Learn More</a>
+      </div>
+    </div>
+
+    <!-- Project 6: Report Maker -->
+    <div class="project-row" data-aos="fade-right" data-aos-duration="1000">
+      <div class="project-images">
+        <div class="main-image">
+          <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80" alt="Report Maker">
+          <div class="corner-badge">Productivity</div>
+        </div>
+        <div class="overlay-image" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=400&q=80" alt="Document Preview">
+        </div>
+      </div>
+      <div class="project-content" data-aos="fade-left" data-aos-delay="300">
+        <span class="project-tag">Document Tools</span>
+        <h2>Report Generator Website</h2>
+        <p>Professional report creation tool with live preview functionality. Export to PDF or Word format with customizable templates, dark mode support, and image uploads.</p>
+        <p>Optimized for smooth interaction with custom fonts, SEO-friendly structure, and performance optimization for handling large documents efficiently.</p>
+        <div class="tech-stack">
+          <span class="tech-badge">JavaScript</span>
+          <span class="tech-badge">PDF Export</span>
+          <span class="tech-badge">Word Export</span>
+          <span class="tech-badge">Live Preview</span>
+          <span class="tech-badge">Dark Mode</span>
+        </div>
+        <a href="#" class="cta-button">Start Creating</a>
+      </div>
+    </div>
+
+    <!-- Project 8: House Price Prediction -->
+    <div class="project-row" data-aos="fade-left" data-aos-duration="1000">
+      <div class="project-images">
+        <div class="main-image">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80" alt="House Price ML">
+          <div class="corner-badge">ML Model</div>
+        </div>
+        <div class="overlay-image" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Real Estate">
+        </div>
+      </div>
+      <div class="project-content" data-aos="fade-right" data-aos-delay="300">
+        <span class="project-tag">Predictive Analytics</span>
+        <h2>House Price Prediction</h2>
+        <p>Machine learning model that accurately predicts house prices based on multiple features. Deployed as both a web application and REST API for easy integration.</p>
+        <p>Includes comprehensive data visualization, accuracy metrics, feature importance analysis, and interactive prediction interface for real-time estimates.</p>
+        <div class="tech-stack">
+          <span class="tech-badge">Python</span>
+          <span class="tech-badge">Scikit-learn</span>
+          <span class="tech-badge">Flask API</span>
+          <span class="tech-badge">Data Viz</span>
+          <span class="tech-badge">Web Interface</span>
+        </div>
+        <a href="#" class="cta-button">Predict Now</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer data-aos="fade-up">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>About</h3>
+        <p>Crafting innovative digital solutions with cutting-edge technology. Specialized in full-stack development, machine learning, and IoT systems.</p>
+        <div class="social-links">
+          <a href="#" class="social-icon" aria-label="LinkedIn">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="GitHub">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Twitter">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Email">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="home">Home</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about">About Me</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#blog">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Services</h3>
+        <ul class="footer-links">
+          <li><a href="#web-dev">Web Development</a></li>
+          <li><a href="#ml">Machine Learning</a></li>
+          <li><a href="#iot">IoT Solutions</a></li>
+          <li><a href="#mobile">Mobile Apps</a></li>
+          <li><a href="#api">API Development</a></li>
+          <li><a href="#consulting">Consulting</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact Info</h3>
+        <p>📧 razaqamar449@gmail.com</p>
+        <p>📱 +91 9916158152</p>
+        <p>📍 karnataka , Davangere</p>
+        <p style="margin-top: 20px; font-size: 0.9rem;">Open for freelance projects and collaborations worldwide.</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Portfolio. All rights reserved.</p>
+      <p>Designed with ❤️ for innovation</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+
+    // Theme Toggle Function
+    function toggleTheme() {
+      const body = document.body;
+      const themeIcon = document.querySelector('.theme-icon');
+      
+      body.classList.toggle('light-mode');
+      
+      if (body.classList.contains('light-mode')) {
+        themeIcon.textContent = '☀️';
+        localStorage.setItem('theme', 'light');
+      } else {
+        themeIcon.textContent = '🌙';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    // Load saved theme on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      const body = document.body;
+      const themeIcon = document.querySelector('.theme-icon');
+      
+      if (savedTheme === 'light') {
+        body.classList.add('light-mode');
+        themeIcon.textContent = '☀️';
+      }
+    });
+
+    // Active navigation link on scroll
+    const sections = document.querySelectorAll('.container, .hero');
+    const navLinks = document.querySelectorAll('.header-nav a');
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // Sync theme icon in header
+    function toggleTheme() {
+      const body = document.body;
+      const themeIcons = document.querySelectorAll('.theme-icon');
+      
+      body.classList.toggle('light-mode');
+      
+      if (body.classList.contains('light-mode')) {
+        themeIcons.forEach(icon => icon.textContent = '☀️');
+        localStorage.setItem('theme', 'light');
+      } else {
+        themeIcons.forEach(icon => icon.textContent = '🌙');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    // Load saved theme on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      const body = document.body;
+      const themeIcons = document.querySelectorAll('.theme-icon');
+      
+      if (savedTheme === 'light') {
+        body.classList.add('light-mode');
+        themeIcons.forEach(icon => icon.textContent = '☀️');
+      }
+    });
+  </script>
+</body>
+</html>
